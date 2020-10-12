@@ -1,5 +1,5 @@
 // src/components/AppHooks.js
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import User from './components/User';
 import Navbar from './components/Navbar';
 
@@ -24,12 +24,12 @@ const App = () => {
     const [bootcamp, useBootcamp] = useState('Ironhack');
 
 
-  colorMapper = () => {
+  const colorMapper = () => {
     const hexColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
     return hexColor;
   };
 
-  clickHandler = () => {
+  const clickHandler = () => {
     this.setState( { clickCount : clickCount + 1 } );
     
     /* YOUR CODE HERE */
@@ -42,8 +42,8 @@ const App = () => {
         <Navbar />
         
         <h1>React = state and props</h1>
-        <p>Count is: {this.state.clickCount}</p>
-        <button onClick={this.clickHandler}> Click me </button>
+        <p>Count is: {clickCount}</p>
+        <button onClick={clickHandler}> Click me </button>
 
         <User
           theColor={backColor}
