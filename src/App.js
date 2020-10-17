@@ -4,6 +4,7 @@ import User from './components/User';
 import Navbar from './components/Navbar';
 import MultiSelect from './components/MultiSelect';
 import Course from './components/Course';
+import Form from './components/forms/form';
 
 class App extends Component {
   state = {
@@ -38,7 +39,6 @@ class App extends Component {
         <Navbar />
 
         <Course />
-        
         {/* <h1>React = state and props</h1>
         <p>Count is: {this.state.clickCount}</p>
         <button onClick={this.clickHandler}> Click me </button>

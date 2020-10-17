@@ -1,32 +1,36 @@
 // src/components/CourseInput.js
 import React, {useState} from "react";
 import CourseDisplay from './CourseDisplay.js';
+import './Course.css';
 
 const CourseControls = props => {
   
-    const [tempCourseName, setTempCourseName] = useState('');
     const [courseName, setCourseName] = useState('');    
+    const [courses, setCourses] = useState([]);
+
+    const inputBox = React.createRef('inputBox');
  
     const handleChange = e => {
-      setTempCourseName(e.target.value);
+      setCourseName(e.target.value);
     };
     
     const handleAdd = e => {
-      setCourseName(tempCourseName);
+      setCourses([...courses, courseName]);
+      inputBox.current.value = "";
     }
 
     return(
-        <div id="divCourse" style={{marginTop:"20px",marginLeft:"10px"}}>
+        <div id="divCourse" className="DivCourseName">
             <input 
               name="courseName"
               type="text" 
+              ref={inputBox}
               onChange={handleChange} 
               placeholder="Please enter the Course Name"
-              style={{width:"400px",fontSize:"16px"}}
-            />
-            <button onClick={handleAdd} style={{style:"inline-block",marginLeft:"5px"}}>Add Course</button>
-            <button onClick={props.resetCourse} style={{style:"inline-block",marginLeft:"5px"}}>Reset</button>
-            <CourseDisplay courseName={courseName}/>
+             />
+            <button onClick={handleAdd}>Add Course</button>
+            <button onClick={props.resetCourse}>Reset</button>
+            {courses.map(c => <CourseDisplay courseName={c}/>)}
         </div>
     );
 }
