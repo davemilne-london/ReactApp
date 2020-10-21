@@ -1,10 +1,13 @@
 // src/components/App.js
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import User from './components/User';
 import Navbar from './components/Navbar';
 import MultiSelect from './components/MultiSelect';
 import Course from './components/Course';
 import Form from './components/forms/form';
+import FilterableProductTable from './components/Products/Products';
+import Api from './components/API/api';
+import Countries from './components/countries/countries';
 
 class App extends Component {
   state = {
@@ -38,26 +41,27 @@ class App extends Component {
 
         <Navbar />
 
-        <Course />
-        {/* <h1>React = state and props</h1>
-        <p>Count is: {this.state.clickCount}</p>
-        <button onClick={this.clickHandler}> Click me </button>
+        {/* <Course /> */}
 
-        <User
-          theColor={this.state.backColor}
-          firstName={this.state.userA.firstName}
-          image={this.state.userA.avatarUrl}
-          bootcamp={this.state.bootcamp}
-           />
-        <User 
-          firstName={this.state.userB.firstName}
-          image={this.state.userB.avatarUrl}
-          bootcamp={this.state.bootcamp}
-           /> */}
+        {/* <FilterableProductTable products={products} /> */}
+
+        {/* <Api /> */}
+
+        <Countries />
+
       </div>
     );
   }
 }
+
+const products = [
+  {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
+  {category: 'Sporting Goods', price: '$9.99', stocked: true, name: 'Baseball'},
+  {category: 'Sporting Goods', price: '$29.99', stocked: false, name: 'Basketball'},
+  {category: 'Electronics', price: '$99.99', stocked: true, name: 'iPod Touch'},
+  {category: 'Electronics', price: '$399.99', stocked: false, name: 'iPhone 5'},
+  {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
+];
 
 // function SelectManager() {
 
