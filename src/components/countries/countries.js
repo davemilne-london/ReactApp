@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
+import './countries.css';
 
 const countriesURL ="https://restcountries.eu/rest/v2/";
 
 const CountrySearch = (props) => {
-    return (<input type="text" placeholder="Search for a country..."/>);
+    return (<input id="textName" type="text" placeholder="Search for a country..." onChange={props.onChange}/>);
 }
 
 const FilterByRegion = (props) => {
     return (
-        <select>
-            <option>Filter by Region</option>
+        <select id="dropdownRegion" onChange={props.onChange}>
+            <option value="">Filter by Region</option>
             <option>Africa</option>
-            <option>America</option>
+            <option>Americas</option>
             <option>Asia</option>
             <option>Europe</option>
             <option>Oceania</option>
@@ -21,31 +22,12 @@ const FilterByRegion = (props) => {
 }
 
 
-const CountryDetails = (props) => {
-
-    if (props.isLoading) {
-        return <p>Loading...</p>
-    }
-    
-    return (
-        <div id="divCountries">
-            {props.articles.map((item, i) =>
-                <CountryFlag 
-                    key={i}
-                    flag={item.flag}
-                    name={item.name}
-                    population={item.population}
-                    region={item.region} />)
-            }
-        </div>        
-    )
-}
 
 const CountryFlag = (props) => {
     return (
-        <div class="country">
+        <div className="country">
             <img src={props.flag} alt={props.name} />
-            <h2>{props.name}</h2>
+            <h3>{props.name}</h3>
             <p><strong>Population: </strong>{props.population}</p>
             <p><strong>Region: </strong>{props.region}</p>
             <p><strong>Capital: </strong>{props.capital}</p>
@@ -63,8 +45,25 @@ const Countries = () => {
     const [region, setRegion] = useState('');
 
     useEffect(() => {
+
+        if (searchType!='name') {
+            document.getElementById('textName').value='';
+        } else if (searchType!='region') {
+            document.getElementById('dropdownRegion').selectedIndex=0;
+        }
+
         fetchArticles();
-    }, [searchType]);
+    }, [searchType, articles]);
+
+    const onRegionChange = (e) => {
+        setRegion(e.target.value);
+        setSearchType(e.target.value !== '' ? 'region' : 'all');
+    }
+
+    const onNameChange = (e) => {
+        setSearchName(e.target.value);
+        setSearchType(e.target.value !== '' ? 'name' : 'all');
+    }
 
     const fetchArticles = async () => {
 
@@ -84,7 +83,7 @@ const Countries = () => {
         try {
             axios.get(URLBase)
                 .then(({ data }) => {
-                    setArticles({array: data});
+                    setArticles(data);
                 })
             
         } catch (e) {
@@ -96,8 +95,12 @@ const Countries = () => {
 
     return (
         <>
-            <CountrySearch />
-            <FilterByRegion />
+            <CountrySearch 
+                onChange={onNameChange}
+            />
+            <FilterByRegion 
+                onChange={onRegionChange}
+            />
             <div id="divCountries">
                 {isLoading ?? <p>Loading...</p>}
                 {articles.map((item, i) =>
@@ -106,7 +109,8 @@ const Countries = () => {
                         flag={item.flag}
                         name={item.name}
                         population={item.population}
-                        region={item.region} />)
+                        region={item.region}
+                        capital={item.capital} />)
                 }
             </div>
         </>
