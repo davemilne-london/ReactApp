@@ -8,6 +8,8 @@ import Form from './components/forms/form';
 import FilterableProductTable from './components/Products/Products';
 import Api from './components/API/api';
 import Countries from './components/countries/countries';
+import Day6 from './components/Day6/Day6';
+import Account from './components/Homework_6/Account';
 
 class App extends Component {
   state = {
@@ -47,7 +49,11 @@ class App extends Component {
 
         {/* <Api /> */}
 
-        <Countries />
+        {/* <Countries /> */}
+
+        {/* <Day6 /> */}
+
+        <Account />        
 
       </div>
     );

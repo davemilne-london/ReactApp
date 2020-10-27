@@ -1,0 +1,26 @@
+
+.fieldset {
+    margin:20px;
+    width:220px;
+}
+
+.fieldset div .label {
+    display:block;
+}
+
+.fieldset div {
+    margin-bottom:10px;
+}
+
+.fieldset div .formInput {
+    width:210px;
+}
+
+.fieldset div select {
+    width:220px;
+}
+
+.fieldset .submit {
+    margin-top:10px;
+    width:220px;
+}
