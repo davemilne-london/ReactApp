@@ -3,8 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-regenerator": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.20.0",
+    "babel-loader": "^8.0.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-regenerator-runtime": "^6.5.0",
+    "identity-obj-proxy": "^3.0.0",
     "install": "^0.13.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -13,7 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -31,8 +42,21 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "transform": {
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest"
+    },
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0"
+    "@testing-library/react": "^9.5.0",
+    "babel-jest": "^26.6.1",
+    "jest": "^26.6.1"
   }
 }
